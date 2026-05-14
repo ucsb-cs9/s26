@@ -1,7 +1,7 @@
 ---
 layout: lab
 num: lab06
-ready: false
+ready: true
 desc: "Prioritizing Cybersecurity Incidents"
 assigned: 2026-05-14 11:00:00-7
 due: 2026-05-19 23:59:59.59-7
