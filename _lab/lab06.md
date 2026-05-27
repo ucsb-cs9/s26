@@ -104,14 +104,17 @@ Output:
 (Incident) Severity: high, Affected Users: 2400, Duration: 6.5 hours
 ```
 
-Lastly, your `Incident` class should overload the `>`, `<`, and `==` operators. These overloaded operators must follow the triage policy from the introduction:
+Lastly, your `Incident` class should overload the `>`, `<`, and `==` operators. These overloaded operators must follow the triage policy from the introduction.
 
-- higher severity is higher priority
-- if severity is tied, more affected users is higher priority
-- if both are tied, shorter duration is higher priority
-- if all three attributes are the same, neither incident is higher priority than the other
+For example, `incident0 < incident1` should return `True` when `incident0` should appear earlier than `incident1` in the sorted list.
 
-For example, `incident0 < incident1` should return `True` when `incident0` should appear earlier than `incident1` in the sorted list. If two incidents have the same severity, affected users, and duration, then both `incident0 < incident1` and `incident0 > incident1` should return `False`, while `incident0 == incident1` should return `True`.
+If two incidents have the same severity, affected users, and duration, then both `incident0 < incident1` and `incident0 > incident1` should return `False`, while `incident0 == incident1` should return `True`.
+
+If the two incidents are not identical, compare them in this order:
+
+1. Compare `severity` first. The incident with higher severity should come earlier in the sorted list.
+2. If `severity` is tied, compare `affected_users`. The incident affecting more users should come earlier.
+3. If both `severity` and `affected_users` are tied, compare `duration`. The incident with the shorter duration should come earlier.
 
 # `lab06.py`
 
