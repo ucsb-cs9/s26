@@ -10,6 +10,11 @@ due: 2026-06-09 23:59:59.59-7
 This lab is based on the chapter ["Search Tree Implementation"](https://runestone.academy/ns/books/published/pythonds/Trees/SearchTreeImplementation.html).
 We recommend drawing out the different cases and methodically testing them to verify that your code is correctly handling all relevant deletions.
 
+**This lab is intended as a bonus lab to help you prepare for the final exam.***
+- solving this lab yourself, without any assistance other than during the lab and office hours, will be a great preparation for the questions on the exam (and your future interviews)
+- submitting this lab will allow you to replace your lowest lab score with a potentially higher score (or a partial score)
+- there's no downsides for attempting this lab; not submitting this lab will not change your lab score, since the 0 for this lab will be the lowest score that we'll drop
+
 In this lab, you'll have the opportunity to practice:
 
 * Defining classes in Python
@@ -169,7 +174,7 @@ class EventTree:
     def length(self):
         return self.___
 
-    def put(self,key,val):
+    def put(self, key, val):
         if self.root:
             self._put(key, val, self.___)
         else: # there's no root, so add the first node
@@ -180,37 +185,37 @@ class EventTree:
     def _put(self, key, val, currentNode):
         if key < currentNode.___:
             if currentNode.___(): # check if there's already a smaller node
-                self._put(key,val,currentNode.left)
+                self._put(key, val, currentNode.left)
             else: # no smaller node exist, so create a new one
-                currentNode.left = ___(key,val,parent=currentNode)
+                currentNode.left = ___(key, val, parent=currentNode)
         else: # need to add to the right subtree
             if currentNode.has_right_child():
-                self._put(key,val,currentNode.right)
+                self._put(key, val, currentNode.right)
             else:
-                currentNode.___ = EventNode(key,val,parent=___)
+                currentNode.___ = EventNode(key, val, parent=___)
 
 
-    def get(self,key): # returns eventinfo for key if it exists
+    def get(self, key): # returns eventinfo for key if it exists
         if self.root:
-            res = self._get(key,self.root)
+            res = self._get(key, self.root)
             if res:
                 return res.eventinfo
         # otherwise, returns None
 
     # helper method to recursively walk down the tree
-    def _get(self,key,currentNode):
+    def _get(self, key, currentNode):
             if not currentNode:
                 return None
             elif currentNode.___ == key:
                 return ___
             elif key < currentNode.___:
-                return self._get(key,currentNode.left)
+                return self._get(key, currentNode.left)
             else:
-                return self._get(key,currentNode.___)
+                return self._get(key, currentNode.___)
 
-    def delete(self,key):
+    def delete(self, key):
         if self.size > 1:
-            nodeToRemove = self._get(key,self.root)
+            nodeToRemove = self._get(key, self.root)
             if nodeToRemove:
                 self.remove(___) # remove modifies the tree
                 self.size = self.size-1
@@ -310,7 +315,7 @@ if __name__ == "__main__":
     tree = EventTree()
     # Adding some events
     tree.put("0704", "Independence Day")
-    tree.put("0607", "Final day of S24 instruction")
+    tree.put("0605", "Final day of instruction")
     tree.put("0616", "Commencement")
     tree.put("0101", "New Year's Day")
     tree.put("1225", "Christmas Day")
@@ -331,7 +336,7 @@ Showing Tree Representation of Events
       |---- (Level 2) LR
 0616 : Commencement
    |---- (Level 1) L
-0607 : Final day of S24 instruction
+0605 : Final day of instruction
          |---- (Level 3) LLR
 0317 : St. Patrick's Day
       |---- (Level 2) LL
@@ -352,7 +357,7 @@ Showing Tree Representation of Events
       |---- (Level 2) LR
 0616 : Commencement
    |---- (Level 1) L
-0607 : Final day of S24 instruction
+0607 : Final day of instruction
          |---- (Level 3) LLR
 0317 : St. Patrick's Day
       |---- (Level 2) LL
@@ -366,7 +371,7 @@ End of the event listing.
 An example of the `inorder()` string format is given below:
 
 ```python
-    print(tree.inorder()) # ' 0101  0317  0607  0616  1031  1225 '
+    print(tree.inorder()) # ' 0101  0317  0605  0616  1031  1225 '
 ```
 
 **Note**: there is an extra space before and after the node values and each node is separated from another by **two** spaces.
